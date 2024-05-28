@@ -19,11 +19,20 @@ public class Product {
     private Long id;
     private String marque;
     private String reference;
-    private LocalDate dateAchat;
     private double prix;
     private int stock;
+    @Temporal(TemporalType.DATE)
+    private Date dateAchat;
 
     public Product() {
+    }
+
+    public Product(String marque, String reference, double prix, int stock, Date dateAchat) {
+        this.marque = marque;
+        this.reference = reference;
+        this.prix = prix;
+        this.stock = stock;
+        this.dateAchat = dateAchat;
     }
 
     @Override
