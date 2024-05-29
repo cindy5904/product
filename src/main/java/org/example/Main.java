@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.entity.Image;
 import org.example.entity.Product;
+import org.example.service.ImageService;
 import org.example.service.ProduitService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +27,7 @@ public class Main {
         product.create(new Product("Nokia","3310",50,89,new Date("2024/05/10")));
 
 
+
 //        System.out.println(product.findAll());
 //        System.out.println(product.prixSperieurA100());
 //        Date dateDebut = new Date("2018/ 11/ 12");
@@ -44,7 +47,22 @@ public class Main {
         System.out.println(product.stockValeurMarque("Apple"));
         System.out.println(product.moyenneTousLesProduits());
         System.out.println(product.listeProduitMarque("Nokia"));
-        System.out.println(product.deleteProductMarque("Nokia"));
+        System.out.println(product.deleteProductMarque("DELL"));
+//        System.out.println(product.ajouterImageAuProduit(1,"1234545"));
+
+        ProduitService produitService = new ProduitService();
+
+
+        ImageService imageService = new ImageService();
+        int idProduit = 1;
+        String imgUrl = "blabla";
+        System.out.println(produitService.ajouterImageAuProduit(idProduit, imgUrl, imageService));
+
+        ;
+
+
+
+
     }
 
 

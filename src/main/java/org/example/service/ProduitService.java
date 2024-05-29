@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.entity.Image;
 import org.example.entity.Product;
 import org.example.interfaces.Repository;
 import org.hibernate.Session;
@@ -119,6 +120,19 @@ public class ProduitService extends BaseService implements Repository<Product> {
         return true;
     }
 
+    public boolean ajouterImageAuProduit(int productId, String imageUrl, ImageService imageService) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Product product = session.get(Product.class, productId);
+        Image image = new Image();
+        image.setUrl(imageUrl);
+        image.setProduct(product);
+        session.save(product);
+        session.save(image);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
 
     public void close(){
         sessionFactory.close();
