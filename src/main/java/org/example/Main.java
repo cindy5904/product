@@ -40,6 +40,7 @@ public class Main {
         Date dateFinScanner = new Date(dateFinStr);
 
         System.out.println(product.dateCompriseEntre(dateDebutScanner, dateFinScanner));
+        System.out.println(product.produitStockInferieurSaisieUtilisateur());
 
     }
 

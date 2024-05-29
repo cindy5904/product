@@ -78,7 +78,9 @@ public class ProduitService extends BaseService implements Repository<Product> {
 
     public List<Product> produitStockInferieurSaisieUtilisateur() {
         session = sessionFactory.openSession();
-        List<Product> product = session.createQuery()
+        List<Product> product = session.createQuery("from Product where stock < 100", Product.class).list();
+        session.close();
+        return product;
     }
     public void close(){
         sessionFactory.close();
