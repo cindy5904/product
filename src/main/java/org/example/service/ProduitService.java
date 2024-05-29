@@ -2,8 +2,9 @@ package org.example.service;
 
 import org.example.entity.Product;
 import org.example.interfaces.Repository;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 
-import javax.persistence.Query;
 import java.util.Date;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class ProduitService extends BaseService implements Repository<Product> {
         List<Product> product = session.createQuery("from Product where dateAchat between :dateDebut and :dateFin", Product.class)
         .setParameter("dateDebut", dateDebut)
         .setParameter("dateFin", dateFin)
-                .list();
+        .list();
         session.close();
         return product;
     }
@@ -82,6 +83,43 @@ public class ProduitService extends BaseService implements Repository<Product> {
         session.close();
         return product;
     }
+
+    public double stockValeurMarque(String nomMarque ) {
+        Session session = sessionFactory.openSession();
+        Query<Double> productQuery = session.createQuery("Select sum(p.prix * p.stock) from Product p where p.marque = :nomMarque", Double.class);
+        productQuery.setParameter("nomMarque", nomMarque);
+        double stockValue = productQuery.uniqueResult();
+        session.close();
+        return stockValue;
+    }
+
+    public double moyenneTousLesProduits() {
+        Session session = sessionFactory.openSession();
+        Query<Double> productQuery = session.createQuery("select avg(prix) from Product ", Double.class);
+        double moyenneValeur = productQuery.uniqueResult();
+        session.close();
+        return moyenneValeur;
+    }
+
+    public List<Product> listeProduitMarque(String nomMarque) {
+        Session session = sessionFactory.openSession();
+        Query<Product> productQuery = session.createQuery( "from Product where marque = :nomMarque", Product.class);
+        productQuery.setParameter("nomMarque", nomMarque);
+        List<Product> produits = productQuery.getResultList();
+        session.close();
+        return produits;
+    }
+    public boolean deleteProductMarque(String nomMarque) {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        Query<Boolean> query = session.createQuery("delete from Product where marque = :nomMarque");
+        query.setParameter("nomMarque", nomMarque);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
+
     public void close(){
         sessionFactory.close();
     }

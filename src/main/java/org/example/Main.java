@@ -25,23 +25,26 @@ public class Main {
         product.create(new Product("Nokia","3310",50,89,new Date("2024/05/10")));
 
 
-        System.out.println(product.findAll());
-        System.out.println(product.prixSperieurA100());
-        Date dateDebut = new Date("2018/ 11/ 12");
-        Date dateFin = new Date("2023/01/01");
-        System.out.println(product.dateCompriseEntre(dateDebut, dateFin));
+//        System.out.println(product.findAll());
+//        System.out.println(product.prixSperieurA100());
+//        Date dateDebut = new Date("2018/ 11/ 12");
+//        Date dateFin = new Date("2023/01/01");
+//        System.out.println(product.dateCompriseEntre(dateDebut, dateFin));
+//
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.print("Entrez la date de début: ");
+//        String dateDebutStr = scanner.nextLine();
+//        Date dateDebutScanner = new Date(dateDebutStr);
+//        System.out.print("Entrez la date de fin: ");
+//        String dateFinStr = scanner.nextLine();
+//        Date dateFinScanner = new Date(dateFinStr);
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Entrez la date de début: ");
-        String dateDebutStr = scanner.nextLine();
-        Date dateDebutScanner = new Date(dateDebutStr);
-        System.out.print("Entrez la date de fin: ");
-        String dateFinStr = scanner.nextLine();
-        Date dateFinScanner = new Date(dateFinStr);
-
-        System.out.println(product.dateCompriseEntre(dateDebutScanner, dateFinScanner));
+//        System.out.println(product.dateCompriseEntre(dateDebutScanner, dateFinScanner));
         System.out.println(product.produitStockInferieurSaisieUtilisateur());
-
+        System.out.println(product.stockValeurMarque("Apple"));
+        System.out.println(product.moyenneTousLesProduits());
+        System.out.println(product.listeProduitMarque("Nokia"));
+        System.out.println(product.deleteProductMarque("Nokia"));
     }
 
 

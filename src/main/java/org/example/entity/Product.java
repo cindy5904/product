@@ -3,10 +3,13 @@ package org.example.entity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -23,6 +26,12 @@ public class Product {
     private int stock;
     @Temporal(TemporalType.DATE)
     private Date dateAchat;
+
+    @OneToMany(mappedBy = "product")
+    private List<Image> images = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product")
+    private List<Commentaire> commentaires = new ArrayList<>();
 
     public Product() {
     }
