@@ -8,6 +8,11 @@ import java.util.List;
 
 public class ImageService extends BaseService implements Repository<Image> {
     private ProduitService produitService;
+
+    public ImageService(ProduitService produitService) {
+        this.produitService = produitService;
+    }
+
     @Override
     public boolean create(Image o) {
         session = sessionFactory.openSession();
@@ -55,8 +60,15 @@ public class ImageService extends BaseService implements Repository<Image> {
         return images;
     }
 
-    public void ajouterImgProduit(String url, int productId) {
+    public boolean ajouterImgProduit(String url, int productId) {
+
         Product product = produitService.findById(productId);
-        Image image = Image.builder().url(url).
+        if(product !=null) {
+            Image image = Image.builder().url(url).product(product).build();
+            create(image);
+        } else {
+            System.out.println("produit non trouvé");
+        }
+        return false;
     }
 }

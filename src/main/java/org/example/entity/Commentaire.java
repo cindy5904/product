@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -18,7 +19,7 @@ public class Commentaire {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String contenu;
-    private Date date;
+    private LocalDate date;
     private int note;
     @ManyToOne
     @JoinColumn(name = "product_id")

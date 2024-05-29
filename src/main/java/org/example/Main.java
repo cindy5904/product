@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.entity.Image;
 import org.example.entity.Product;
+import org.example.service.CommentaireService;
 import org.example.service.ImageService;
 import org.example.service.ProduitService;
 import org.hibernate.Session;
@@ -50,16 +51,12 @@ public class Main {
         System.out.println(product.deleteProductMarque("DELL"));
 //        System.out.println(product.ajouterImageAuProduit(1,"1234545"));
 
-        ProduitService produitService = new ProduitService();
-
-
-        ImageService imageService = new ImageService();
-        int idProduit = 1;
-        String imgUrl = "blabla";
-        System.out.println(produitService.ajouterImageAuProduit(idProduit, imgUrl, imageService));
+        ImageService imageService = new ImageService(product);
+        System.out.println(imageService.ajouterImgProduit("gjkfjgfhj", 1));
 
         ;
-
+        CommentaireService commentaireService = new CommentaireService(product);
+        System.out.println(commentaireService.ajouterCommentaireProduit("fgjkf", 3, 2));
 
 
 
